@@ -12,9 +12,16 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 
-
+    @IBAction func handleNewDoc(_ sender: Any) {
+        print("NEW DOC!")
+        
+        
+        
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

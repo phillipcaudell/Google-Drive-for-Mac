@@ -7,13 +7,24 @@
 //
 
 import Cocoa
+import WebKit
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate {
 
+    @IBOutlet weak var webView: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Do any additional setup after loading the view.
+
+        let url = URL.init(string: "https://drive.google.com")
+        let request = URLRequest(url: url!)
+        webView.load(request)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
     }
 
     override var representedObject: Any? {
@@ -21,7 +32,22 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.backgroundColor = NSColor.white
+    }
 
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        let viewController = ViewController(nibName: <#T##NSNib.Name?#>, bundle: <#T##Bundle?#>)
+        let window = NSWindow(contentViewController: viewController)
+        window.makeKey()
+        
+        print("HELLO NEW WINDOW!?")
+        webView.load(navigationAction.request)
+        return nil
+    }
 
 }
 
