@@ -3,9 +3,7 @@ A standalone Mac wrapper for the suite of Google Drive applications: Doc, Slides
 
 ![Demo screenshot](Images/Hero.jpg)
 
-<h2><a href="https://github.com/phillipcaudell/Google-Drive-for-Mac/raw/master/Builds/1.0.zip">Download Now</a></h2>
-
-Requires macOS 10.13
+<p style="text-align: center;"><a href="https://github.com/phillipcaudell/Google-Drive-for-Mac/raw/master/Builds/1.1.zip">Download Now</a></p>
 
 ## Features
 
