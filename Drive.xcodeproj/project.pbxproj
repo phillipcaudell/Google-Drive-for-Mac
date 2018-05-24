@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13EFAA9A20B767F200B22A3E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13EFAA9920B767F200B22A3E /* WebKit.framework */; };
 		13F638E020B300510029D358 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F638DF20B300510029D358 /* AppDelegate.swift */; };
 		13F638E220B300530029D358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F638E120B300530029D358 /* Assets.xcassets */; };
 		13F638E520B300530029D358 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F638E320B300530029D358 /* MainMenu.xib */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13EFAA9920B767F200B22A3E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		13F638DC20B300510029D358 /* Drive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F638DF20B300510029D358 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F638E120B300530029D358 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,17 +32,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13EFAA9A20B767F200B22A3E /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13EFAA9820B767F100B22A3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13EFAA9920B767F200B22A3E /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		13F638D320B300510029D358 = {
 			isa = PBXGroup;
 			children = (
 				13F638DE20B300510029D358 /* Drive */,
 				13F638DD20B300510029D358 /* Products */,
+				13EFAA9820B767F100B22A3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -275,7 +287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = NHJYTNXWQS;
+				DEVELOPMENT_TEAM = 4X8LAFG6SC;
 				INFOPLIST_FILE = Drive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -293,7 +305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = NHJYTNXWQS;
+				DEVELOPMENT_TEAM = 4X8LAFG6SC;
 				INFOPLIST_FILE = Drive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,11 +9,18 @@
 import Cocoa
 import WebKit
 
-class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate {
+class ViewController: NSViewController, WebUIDelegate, WebPolicyDelegate, WebFrameLoadDelegate {
     
-    let webView = WKWebView()
+    // Was previously using WKWebView, but resizing window in Sheets caused Sheets to throw error
+    // https://github.com/phillipcaudell/Google-Drive-for-Mac/issues/3
+    let webView = WebView()
     let activityIndicator = NSProgressIndicator()
-    let activityOverlay = NSView()
+    
+    deinit {
+        webView.policyDelegate = nil
+        webView.uiDelegate = nil
+        webView.frameLoadDelegate = nil
+    }
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: 1200, height: 740))
@@ -22,9 +29,14 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(webView)
+        
         webView.uiDelegate = self
-        webView.navigationDelegate = self
+        webView.policyDelegate = self
+        webView.frameLoadDelegate = self
+        webView.frame = NSRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height - 20)
+        // Setting user agent to prevent compatibility warning. Probably a better way but ehhh
         webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15"
+        webView.autoresizingMask = [.width, .height]
         
         activityIndicator.isIndeterminate = true
         activityIndicator.style = .spinning
@@ -41,28 +53,28 @@ class ViewController: NSViewController, WKUIDelegate, WKNavigationDelegate {
     
     override func viewWillLayout() {
         super.viewWillLayout()
-        webView.frame = NSRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height - 20)
         activityIndicator.frame = NSRect(x: view.bounds.size.width / 2 - 30, y: view.bounds.size.height / 2 - 30, width: 60, height: 60)
     }
     
     func loadRequest(request: URLRequest) {
-        webView.load(request)
+        webView.mainFrame.load(request)
     }
     
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        let viewController = ViewController()
-        let window = SimpleWindow(contentViewController: viewController)
-        window.setMinimalStyle()
-        window.contentViewController = viewController
-        window.makeKeyAndOrderFront(nil)
-        viewController.loadRequest(request: navigationAction.request)
-        return nil
+    func webView(_ webView: WebView!, decidePolicyForNewWindowAction actionInformation: [AnyHashable : Any]!, request: URLRequest!, newFrameName frameName: String!, decisionListener listener: WebPolicyDecisionListener!) {
+        // Having to use this instead webView:createWebViewWith because request kept returning nil there
+        // https://stackoverflow.com/questions/270458/cocoa-webkit-having-window-open-javascript-links-opening-in-an-instance-of
+            let viewController = ViewController()
+            let window = SimpleWindow(contentViewController: viewController)
+            window.setMinimalStyle()
+            window.contentViewController = viewController
+            window.makeKeyAndOrderFront(nil)
+            viewController.loadRequest(request: request)
+ 
+        listener.ignore()
     }
-        
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        activityIndicator.stopAnimation(nil)
-        if let title = webView.title {
-            view.window?.title = title
-        }
+    
+    func webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!) {
+        self.activityIndicator.stopAnimation(nil)
+        self.view.window?.title = self.webView.mainFrameTitle
     }
 }
