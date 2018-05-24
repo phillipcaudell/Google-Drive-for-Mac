@@ -60,15 +60,24 @@ class ViewController: NSViewController, WebUIDelegate, WebPolicyDelegate, WebFra
         webView.mainFrame.load(request)
     }
     
+    func webView(_ webView: WebView!, decidePolicyForMIMEType type: String!, request: URLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
+        if type != "text/html" {
+            listener.ignore()
+            // Let's hijack the system's default browser becasue AS IF I'm writing a download manager
+            NSWorkspace.shared.open(request.url!)
+        }
+    }
+    
     func webView(_ webView: WebView!, decidePolicyForNewWindowAction actionInformation: [AnyHashable : Any]!, request: URLRequest!, newFrameName frameName: String!, decisionListener listener: WebPolicyDecisionListener!) {
-        // Having to use this instead webView:createWebViewWith because request kept returning nil there
+        
+        // Having to use this instead of webView:createWebViewWith because request kept returning nil there
         // https://stackoverflow.com/questions/270458/cocoa-webkit-having-window-open-javascript-links-opening-in-an-instance-of
-            let viewController = ViewController()
-            let window = SimpleWindow(contentViewController: viewController)
-            window.setMinimalStyle()
-            window.contentViewController = viewController
-            window.makeKeyAndOrderFront(nil)
-            viewController.loadRequest(request: request)
+        let viewController = ViewController()
+        let window = SimpleWindow(contentViewController: viewController)
+        window.setMinimalStyle()
+        window.contentViewController = viewController
+        window.makeKeyAndOrderFront(nil)
+        viewController.loadRequest(request: request)
  
         listener.ignore()
     }
