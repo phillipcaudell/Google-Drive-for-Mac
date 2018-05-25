@@ -1,5 +1,5 @@
 # Google Drive for Mac
-A standalone Mac wrapper for the suite of Google Drive applications: Doc, Slides and Sheets. [Download Now](https://github.com/phillipcaudell/Google-Drive-for-Mac/raw/master/Builds/1.1.zip)
+A standalone Mac wrapper for the suite of Google Drive applications: Doc, Slides and Sheets. [Download Now](https://github.com/phillipcaudell/Google-Drive-for-Mac/releases)
 
 ![Demo screenshot](Images/Hero.jpg)
 
@@ -15,7 +15,7 @@ A standalone Mac wrapper for the suite of Google Drive applications: Doc, Slides
 ![Use native window management](Images/Windows.jpg)
 
 ## How to install 
-You can either compile it yourself, or just download a copy from the [/Builds](https://github.com/phillipcaudell/Google-Drive-for-Mac/tree/master/Builds) folder. Then drag to your Applications folder, and voila! 
+You can either compile it yourself, or just download a copy from [releases](https://github.com/phillipcaudell/Google-Drive-for-Mac/releases). Then drag to your Applications folder, and voila! 
 
 ## License 
 Copyright 2018 Phillip Caudell
