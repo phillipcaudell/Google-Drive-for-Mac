@@ -97,6 +97,11 @@
                                     <action selector="handleOpen:" target="Voe-Tx-rLC" id="MFA-Qm-4Jh"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Open Location..." keyEquivalent="l" id="Iwl-qY-X2o">
+                                <connections>
+                                    <action selector="handleOpenLocation:" target="Voe-Tx-rLC" id="rqw-UO-ln4"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
