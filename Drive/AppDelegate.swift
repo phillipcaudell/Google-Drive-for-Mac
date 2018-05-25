@@ -38,6 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let inputTextField = NSTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 24))
         inputTextField.placeholderString = "drive.google.com"
         a.accessoryView = inputTextField
+        a.window.initialFirstResponder = inputTextField
         
         a.beginSheetModal(for: self.window!, completionHandler: { (modalResponse) -> Void in
             if modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn {
