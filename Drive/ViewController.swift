@@ -15,6 +15,7 @@ class ViewController: NSViewController, WebUIDelegate, WebPolicyDelegate, WebFra
     // https://github.com/phillipcaudell/Google-Drive-for-Mac/issues/3
     let webView = WebView()
     let activityIndicator = NSProgressIndicator()
+    var url: URL?
     
     deinit {
         webView.policyDelegate = nil
@@ -58,6 +59,7 @@ class ViewController: NSViewController, WebUIDelegate, WebPolicyDelegate, WebFra
     
     func loadRequest(request: URLRequest) {
         webView.mainFrame.load(request)
+        url = request.url!
     }
     
     func webView(_ webView: WebView!, decidePolicyForMIMEType type: String!, request: URLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
@@ -85,5 +87,26 @@ class ViewController: NSViewController, WebUIDelegate, WebPolicyDelegate, WebFra
     func webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!) {
         self.activityIndicator.stopAnimation(nil)
         self.view.window?.title = self.webView.mainFrameTitle
+        
+        // Add to recently viewed documents
+        guard let url = url else {
+            return
+        }
+            
+        let newRecent = ["title": self.webView.mainFrameTitle ?? "", "url": url.absoluteString]
+        
+        var newRecents = [newRecent]
+        
+        if var recents = UserDefaults.standard.value(forKey: "kRecentDocuments") as? [[String:String]] {
+            
+            recents = recents.filter { (recent) -> Bool in
+                return recent["url"] != newRecent["url"]
+            }
+            
+            newRecents = newRecents + recents
+        }
+        
+        UserDefaults.standard.setValue(newRecents, forKey: "kRecentDocuments")
+        (NSApplication.shared.delegate! as! AppDelegate).loadRecentsMenu()
     }
 }

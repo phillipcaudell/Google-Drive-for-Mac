@@ -9,10 +9,11 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @IBOutlet weak var window: SimpleWindow!
-
+    @IBOutlet weak var openRecentMenu: NSMenu!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         window.setMinimalStyle()
         let vc = ViewController()
@@ -22,6 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let url = URL(string: "https://drive.google.com")
         let request = URLRequest(url: url!)
         vc.loadRequest(request: request)
+        
+        loadRecentsMenu()
     }
 
     @IBAction func handleOpen(_ sender: Any) {
@@ -74,14 +77,57 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.setMinimalStyle()
         window.contentViewController = viewController
         window.makeKeyAndOrderFront(nil)
+        viewController.url = url
         viewController.loadRequest(request: request)
+        openRecentMenu.delegate = self
+        
+        loadRecentsMenu()
     }
     
     func applicationWillBecomeActive(_ notification: Notification) {
         let windowCount = NSApplication.shared.windows.count
         if windowCount == 1 && !window.isVisible {
             window.makeKeyAndOrderFront(nil)
+            openRecentMenu.delegate = self
         }
+        
+        loadRecentsMenu()
+    }
+    
+    func loadRecentsMenu() {
+        openRecentMenu.removeAllItems()
+        
+        guard let recents = UserDefaults.standard.value(forKey: "kRecentDocuments") as? [[String:String]] else {
+            return
+        }
+        
+        var count = 0
+        for recent in recents {
+            
+            let newMenuItem = NSMenuItem(title: recent["title"] ?? "", action: #selector(handleClickMenuItem(sender:)), keyEquivalent: "")
+            newMenuItem.tag = count
+            openRecentMenu.insertItem(newMenuItem, at: count)
+            count = count + 1
+            
+            if count == 10 { break }
+        }
+    }
+    
+    @objc func handleClickMenuItem(sender: NSMenuItem) {
+        
+        guard let recents = UserDefaults.standard.value(forKey: "kRecentDocuments") as? [[String:String]] else {
+            return
+        }
+        
+        let selectedRecent = recents[sender.tag]
+        
+        guard
+            let recentUrlString = selectedRecent["url"],
+            let recentUrl = URL(string: recentUrlString) else {
+            return
+        }
+        
+        openWindow(url: recentUrl)
     }
 }
 
