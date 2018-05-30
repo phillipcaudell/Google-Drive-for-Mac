@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Drive" customModuleProvider="target">
             <connections>
+                <outlet property="handleRefresh" destination="g2w-HT-Af5" id="ixq-l7-jWS"/>
                 <outlet property="openRecentMenu" destination="0C7-eQ-NhP" id="9nt-xa-FOS"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -114,6 +115,12 @@
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
+                            <menuItem title="Refresh" keyEquivalent="r" id="g2w-HT-Af5">
+                                <connections>
+                                    <action selector="handleRefresh:" target="Voe-Tx-rLC" id="5Yz-WK-4hH"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="V1S-Zh-nyM"/>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>

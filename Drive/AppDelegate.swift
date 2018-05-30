@@ -69,6 +69,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         openWindow(url: url!)
     }
     
+    @IBAction func handleRefresh(_ sender: Any) {
+        
+        if let viewController = NSApplication.shared.keyWindow?.contentViewController as? ViewController {
+            viewController.webView.reload(nil)
+        }
+    }
+    
     func openWindow(url: URL) {
         let request = URLRequest(url: url)
         
