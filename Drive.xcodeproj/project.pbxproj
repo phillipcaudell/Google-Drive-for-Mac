@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1360232C20C01FFF00705C6A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1360232B20C01FFF00705C6A /* Sparkle.framework */; };
+		1360232D20C0204A00705C6A /* Sparkle.framework in Resources */ = {isa = PBXBuildFile; fileRef = 1360232B20C01FFF00705C6A /* Sparkle.framework */; };
+		1360232F20C05E7500705C6A /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1360232B20C01FFF00705C6A /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13EFAA9A20B767F200B22A3E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13EFAA9920B767F200B22A3E /* WebKit.framework */; };
 		13F638E020B300510029D358 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F638DF20B300510029D358 /* AppDelegate.swift */; };
 		13F638E220B300530029D358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F638E120B300530029D358 /* Assets.xcassets */; };
@@ -15,7 +18,21 @@
 		13F638F220B43D180029D358 /* SimpleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F638F120B43D180029D358 /* SimpleWindow.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1360232E20C05E6D00705C6A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1360232F20C05E7500705C6A /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1360232B20C01FFF00705C6A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		13EFAA9920B767F200B22A3E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		13F638DC20B300510029D358 /* Drive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F638DF20B300510029D358 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13EFAA9A20B767F200B22A3E /* WebKit.framework in Frameworks */,
+				1360232C20C01FFF00705C6A /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +60,7 @@
 		13EFAA9820B767F100B22A3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1360232B20C01FFF00705C6A /* Sparkle.framework */,
 				13EFAA9920B767F200B22A3E /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -88,6 +107,7 @@
 				13F638D820B300510029D358 /* Sources */,
 				13F638D920B300510029D358 /* Frameworks */,
 				13F638DA20B300510029D358 /* Resources */,
+				1360232E20C05E6D00705C6A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -138,6 +158,7 @@
 			files = (
 				13F638E220B300530029D358 /* Assets.xcassets in Resources */,
 				13F638E520B300530029D358 /* MainMenu.xib in Resources */,
+				1360232D20C0204A00705C6A /* Sparkle.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,10 +309,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NHJYTNXWQS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Drive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillipcaudell.Drive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -306,10 +332,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NHJYTNXWQS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Drive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillipcaudell.Drive;
 				PRODUCT_NAME = "$(TARGET_NAME)";

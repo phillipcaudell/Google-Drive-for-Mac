@@ -26,6 +26,18 @@
 	<string>Copyright © 2018 Phillip Caudell. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>SUFeedURL</key>
+	<string>https://caudell.co.uk/other/drive/appcast.xml</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>caudell.co.uk</key>
+			<string></string>
+			<key>phillipcaudell.com</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
