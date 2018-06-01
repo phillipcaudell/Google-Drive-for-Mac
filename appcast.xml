@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Google Docs for Mac</title>
+        <description>Bug fixes</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.0</title>
+            <pubDate>Wed, 09 Jan 2006 19:20:11 +0000</pubDate>
+            <enclosure url="https://github.com/phillipcaudell/Google-Drive-for-Mac/releases/download/v1.2/Drive.app.zip" sparkle:version="1.2" type="application/octet-stream"/>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>
