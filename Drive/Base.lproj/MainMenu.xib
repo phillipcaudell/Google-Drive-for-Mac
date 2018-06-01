@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="handleRefresh" destination="g2w-HT-Af5" id="ixq-l7-jWS"/>
                 <outlet property="openRecentMenu" destination="0C7-eQ-NhP" id="9nt-xa-FOS"/>
+                <outlet property="updater" destination="Mpg-nq-3td" id="Qq4-Ix-OZU"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>

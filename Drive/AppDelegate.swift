@@ -7,19 +7,24 @@
 //
 
 import Cocoa
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
+    @IBOutlet weak var updater: SUUpdater!
     @IBOutlet weak var window: SimpleWindow!
     @IBOutlet weak var openRecentMenu: NSMenu!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        updater.feedURL = URL(string:"https://raw.githubusercontent.com/phillipcaudell/Google-Drive-for-Mac/features/sparkle/appcast.xml")!
+        
         window.setMinimalStyle()
         let vc = ViewController()
         window.contentViewController = vc
         window.makeKey()
-        
+    
         let url = URL(string: "https://drive.google.com")
         let request = URLRequest(url: url!)
         vc.loadRequest(request: request)
