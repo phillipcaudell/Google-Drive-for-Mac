@@ -18,24 +18,28 @@ h1 {
 h2 {
 	font-size: 1.33em;
 	font-weight: 300;
+	margin-bottom: 1em;
 }
 
 .pull {
-	width: 60%;
-	margin: auto;
+	padding: 0em 15%;
 }
 
 .container {
 	max-width: 940px;
 	width: 100%;
 	margin: auto;
+	overflow: auto;
 }
 
 .section-hero {
 	text-align: center;
 	background-image: url('../images/hero-bg.jpg');
-	background-size: cover;
+	background-size: 100%;
+	background-repeat: no-repeat;
 	background-position: center bottom;
+	display: block;
+	overflow: auto;
 }
 
 .section-hero .icon {
@@ -48,4 +52,83 @@ h2 {
 
 .section-hero .hero {
 	width: 100%;
+	margin-top: 1em;
+}
+
+.section-features {
+	text-align: center;
+	padding-top: 3em;
+	padding-bottom: 3em;
+	overflow: visible;
+}
+
+.section-features .feature {
+	max-width: 222px;
+	width: 100%;
+}
+
+.row {
+	display: block;
+	overflow: auto;
+	margin-bottom: 1em;
+}
+
+.col-3 {
+	width: 33.33%;
+	float: left;
+}
+
+.button {
+	background-color: #4D8AF1;
+	text-align: center;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 1.3em;
+	display: inline-block;
+	padding: 0.5em 1.5em;
+	line-height: 1;
+	border-radius: 5px;
+}
+
+.button:hover {
+	background-color: #3D6EC0;
+}
+
+.button span {
+	display: block;
+	margin-bottom: 0.2em;
+}
+
+.button small {
+	font-size: 0.5em;
+}
+
+footer {
+	font-size: 0.8em;
+	color: #CCC;
+	text-align: center;
+	padding-bottom: 2em;
+}
+
+footer a {
+	color: #CCC;
+}
+
+@media only screen and (max-width: 768px) {
+	
+	body {
+		font-size: 16px;
+	}
+	
+	.col-3 {
+		width: 100%;
+	}
+	
+	.pull {
+		padding: 0px;
+	}
+	
+	section {
+		padding: 0em 1em;
+	}
 }
