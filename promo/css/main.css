@@ -1,0 +1,51 @@
+body {
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1, h2, h3 {
+	margin: 0px;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 500;
+	margin-bottom: 0.5em;
+}
+
+h2 {
+	font-size: 1.33em;
+	font-weight: 300;
+}
+
+.pull {
+	width: 60%;
+	margin: auto;
+}
+
+.container {
+	max-width: 940px;
+	width: 100%;
+	margin: auto;
+}
+
+.section-hero {
+	text-align: center;
+	background-image: url('../images/hero-bg.jpg');
+	background-size: cover;
+	background-position: center bottom;
+}
+
+.section-hero .icon {
+	width: 120px;
+	margin: auto;
+	display: block;
+	margin-top: 3em;
+	margin-bottom: 1em;
+}
+
+.section-hero .hero {
+	width: 100%;
+}
