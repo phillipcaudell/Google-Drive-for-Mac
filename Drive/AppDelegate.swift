@@ -31,8 +31,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         loadRecentsMenu()
     }
+    
+    func application(_ application: NSApplication, open urls: [URL]) {
+        
+        urls.forEach { (url) in
+            if (url.absoluteString.starts(with: "https://drive.google.com")) {
+                // Open Drive links in the main window
+                window.makeKeyAndOrderFront(nil)
+                
+                let viewController = NSApplication.shared.mainWindow?.contentViewController as! ViewController
+                let request = URLRequest(url: url)
+                
+                viewController.loadRequest(request: request)
+            } else {
+                // Open document links in a new window
+                openWindow(url: url)
+            }
+        }
+    }
 
     @IBAction func handleOpen(_ sender: Any) {
+        
         window.makeKeyAndOrderFront(nil)
     }
     
@@ -73,16 +92,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     @IBAction func handleNewDoc(_ sender: Any) {
+        
         let url = URL(string: "https://docs.google.com/document/create?hl=en")
         openWindow(url: url!)
     }
     
     @IBAction func handleNewSlide(_ sender: Any) {
+        
         let url = URL(string: "https://docs.google.com/presentation/create?hl=en")
         openWindow(url: url!)
     }
     
     @IBAction func handleNewSheet(_ sender: Any) {
+        
         let url = URL(string: "https://docs.google.com/spreadsheets/create?hl=en")
         openWindow(url: url!)
     }
@@ -95,6 +117,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     func openWindow(url: URL) {
+        
         let request = URLRequest(url: url)
         
         let viewController = ViewController()
@@ -110,6 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     func applicationWillBecomeActive(_ notification: Notification) {
+        
         let windowCount = NSApplication.shared.windows.count
         if windowCount == 1 && !window.isVisible {
             window.makeKeyAndOrderFront(nil)
@@ -120,6 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     func loadRecentsMenu() {
+        
         openRecentMenu.removeAllItems()
         
         guard let recents = UserDefaults.standard.value(forKey: "kRecentDocuments") as? [[String:String]] else {
