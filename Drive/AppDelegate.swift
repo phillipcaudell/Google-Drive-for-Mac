@@ -59,6 +59,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         })
     }
     
+    @IBAction func handleCopyLink(_ sender: Any) {
+        
+        // Get URL of frontmost window and copy to clipboard
+        let viewController = NSApplication.shared.keyWindow?.contentViewController as! ViewController
+        let url = viewController.webView.mainFrameURL
+        
+        if (url != nil) {
+            let pasteboard = NSPasteboard.general
+            pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+            pasteboard.setString(url!, forType: NSPasteboard.PasteboardType.string)
+        }
+    }
+    
     @IBAction func handleNewDoc(_ sender: Any) {
         let url = URL(string: "https://docs.google.com/document/create?hl=en")
         openWindow(url: url!)
